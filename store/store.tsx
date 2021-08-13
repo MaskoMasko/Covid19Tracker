@@ -60,6 +60,10 @@ const CovidInfoStore = types
 
         return self.covidInfo;
       }),
+      readCovidStatsPerCountry: flow(function* readCovidStatsPerCountry(url) {
+        const covidInfo = yield fetch(url).then((x) => x.json());
+        return covidInfo;
+      }),
     };
   });
 
