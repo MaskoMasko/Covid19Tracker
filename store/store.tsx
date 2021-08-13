@@ -64,6 +64,12 @@ const CovidInfoStore = types
         const covidInfo = yield fetch(url).then((x) => x.json());
         return covidInfo;
       }),
+      readCountries: flow(function* readCountries() {
+        const countries = yield fetch(
+          "https://api.covid19api.com/countries"
+        ).then((x) => x.json());
+        return countries;
+      }),
     };
   });
 

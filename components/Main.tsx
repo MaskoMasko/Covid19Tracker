@@ -10,20 +10,21 @@ import { observer } from "mobx-react-lite";
 import { useQuery } from "react-query";
 import { store } from "../store/store";
 import { NativeScreenContainer } from "react-native-screens";
+import { LoadingAndError } from "./LoadingAndError";
+
 export const Main = observer(({ navigation }: any) => {
   const { isLoading, isError, data } = useQuery("covidInfo", () => {
     return store.readCovidInfo();
   });
-  if (isError) {
-    return <Text>Yes Error</Text>;
-  }
-
-  if (isLoading) {
-    return <Text>Loading...</Text>;
-  }
-
   const routeList = store.routeList;
-
+  if (!data) {
+    return (
+      <LoadingAndError
+        isLoading={isLoading}
+        isError={isError}
+      ></LoadingAndError>
+    );
+  }
   return (
     <ScrollView>
       <View>

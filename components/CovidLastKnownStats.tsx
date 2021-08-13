@@ -15,12 +15,6 @@ export const CovidLastKnownStats = () => {
       enabled: false,
     }
   );
-  if (isLoading) {
-    return <Text>Loading...</Text>;
-  }
-  if (isError) {
-    return <Text>Yes Error</Text>;
-  }
   return (
     <View>
       <Text>Enter country name and get results!</Text>
