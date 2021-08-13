@@ -9,7 +9,6 @@ import {
 import { observer } from "mobx-react-lite";
 import { useQuery } from "react-query";
 import { store } from "../store/store";
-import { NativeScreenContainer } from "react-native-screens";
 import { LoadingAndError } from "./LoadingAndError";
 
 export const Main = observer(({ navigation }: any) => {
@@ -29,23 +28,27 @@ export const Main = observer(({ navigation }: any) => {
     <ScrollView>
       <View>
         {routeList.map((route) => {
-          if (route.Name.startsWith("Premium")) {
-            return;
+          if (
+            route.Path == "/countries" ||
+            route.Path == "/summary" ||
+            route.Path == "/dayone/country/:country"
+          ) {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("MoreAbout", { routeName: route.Name });
+                }}
+                activeOpacity={0.5}
+                key={route.Path}
+                style={styles.mainList}
+              >
+                <Text style={styles.mainListText}>{route.Name}</Text>
+                <Text>{route.Path}</Text>
+                <Text>{route.Description}</Text>
+              </TouchableOpacity>
+            );
           }
-
-          return (
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("MoreAbout", { routeName: route.Name });
-              }}
-              activeOpacity={0.5}
-              key={route.Path}
-              style={styles.mainList}
-            >
-              <Text style={styles.mainListText}>{route.Name}</Text>
-              <Text>{route.Description}</Text>
-            </TouchableOpacity>
-          );
+          return;
         })}
       </View>
     </ScrollView>

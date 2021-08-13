@@ -4,6 +4,7 @@ import { CovidLastKnownStats } from "./CovidLastKnownStats";
 import { store } from "../store/store";
 import { Text } from "react-native";
 import { Countries } from "./Countries";
+import { WorldCovidInfo } from "./WorldCovidInfo";
 
 export const SelectedTheme = () => {
   const navigationRoute = useRoute<any>();
@@ -15,6 +16,8 @@ export const SelectedTheme = () => {
     return <CovidLastKnownStats></CovidLastKnownStats>;
   } else if (route.Path == "/countries") {
     return <Countries></Countries>;
+  } else if (route.Path == "/summary") {
+    return <WorldCovidInfo></WorldCovidInfo>;
   }
   return <Text>Yes</Text>;
 };

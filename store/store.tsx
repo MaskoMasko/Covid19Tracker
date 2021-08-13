@@ -70,6 +70,12 @@ const CovidInfoStore = types
         ).then((x) => x.json());
         return countries;
       }),
+      readWorldCovidInfo: flow(function* readWorldCovidInfo() {
+        const worldInfo = yield fetch(
+          "https://api.covid19api.com/summary"
+        ).then((x) => x.json());
+        return worldInfo;
+      }),
     };
   });
 
